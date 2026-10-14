@@ -92,7 +92,7 @@ export async function POST(req: NextRequest) {
       let unitPrice = "0.01";
       try {
         const priceRes = await getItemPrice(Number(sub_category_id));
-        unitPrice = priceRes.unit_price;
+        unitPrice = priceRes.price.unit_price;
       } catch {
         console.warn("[orders/create] No se pudo leer precio, usando fallback");
       }
