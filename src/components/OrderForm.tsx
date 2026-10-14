@@ -43,7 +43,8 @@ export function OrderForm({ game }: Props) {
         body: JSON.stringify({
           player_id: playerId.trim(),
           server: server || undefined,
-          sub_category_id: selectedPkg?.s2tItemId,
+          // Cuando mapees los paquetes reales de Shop2TopUp, pasa sub_category_id aquí
+          // sub_category_id: selectedPkg?.s2tItemId,
         }),
       });
 
@@ -83,7 +84,8 @@ export function OrderForm({ game }: Props) {
           player_name: playerName,
           server: server || undefined,
           sell_price: selectedPkg.price.toFixed(2),
-          sub_category_id: selectedPkg.s2tItemId,
+          // Cuando tengas los item_id reales de Shop2TopUp, ponlos aquí:
+          // sub_category_id: selectedPkg.s2tItemId,
         }),
       });
 
