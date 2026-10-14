@@ -149,4 +149,4 @@ export function formatPrice(price: number): string {
     currency: "USD",
     minimumFractionDigits: 2,
   }).format(price);
-}
+} 
