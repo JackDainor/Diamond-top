@@ -2,8 +2,8 @@ export type Package = {
   id: string;
   name: string;
   diamonds: string;
-  price: number; // precio de venta al cliente (USD)
-  cost?: number; // costo real de Shop2TopUp (opcional)
+  price: number;
+  s2tItemId?: number;
   popular?: boolean;
   bonus?: string;
 };
@@ -16,31 +16,53 @@ export type Game = {
   color: string;
   gradient: string;
   emoji: string;
-  categoryId?: number; // ID de categoría en Shop2TopUp (cuando conectes la API)
+  categoryId?: number;
   packages: Package[];
   requiresServer?: boolean;
   servers?: string[];
 };
 
-// Datos de ejemplo (mock). Cuando conectes la API real de Shop2TopUp
-// estos paquetes se cargarán dinámicamente desde /catalog/subcategories
 export const GAMES: Game[] = [
   {
     id: "free-fire",
-    name: "Free Fire",
-    shortName: "FF",
-    description: "Diamantes Free Fire — entrega automática",
+    name: "Free Fire LATAM",
+    shortName: "FF LATAM",
+    description: "Diamantes Free Fire LATAM (Bolivia, etc.) — entrega automática",
     color: "#ff6b00",
     gradient: "from-orange-500 to-red-600",
     emoji: "🔥",
+    categoryId: 484,
     requiresServer: false,
     packages: [
-      { id: "ff-100", name: "100 Diamantes", diamonds: "100", price: 0.99, popular: false },
-      { id: "ff-310", name: "310 Diamantes", diamonds: "310", price: 2.99, popular: true, bonus: "+31" },
-      { id: "ff-520", name: "520 Diamantes", diamonds: "520", price: 4.99, popular: false },
-      { id: "ff-1060", name: "1060 Diamantes", diamonds: "1060", price: 9.99, popular: true, bonus: "+106" },
-      { id: "ff-2180", name: "2180 Diamantes", diamonds: "2180", price: 19.99, popular: false },
-      { id: "ff-5600", name: "5600 Diamantes", diamonds: "5600", price: 49.99, popular: false },
+      { id: "ff-latam-100", name: "100 + 10 Diamantes", diamonds: "110", price: 1.10, s2tItemId: 732, bonus: "+10" },
+      { id: "ff-latam-310", name: "310 + 31 Diamantes", diamonds: "341", price: 3.20, s2tItemId: 733, popular: true, bonus: "+31" },
+      { id: "ff-latam-520", name: "520 + 52 Diamantes", diamonds: "572", price: 5.00, s2tItemId: 734, bonus: "+52" },
+      { id: "ff-latam-1060", name: "1060 + 106 Diamantes", diamonds: "1166", price: 9.50, s2tItemId: 735, popular: true, bonus: "+106" },
+      { id: "ff-latam-2180", name: "2180 + 218 Diamantes", diamonds: "2398", price: 18.50, s2tItemId: 736, bonus: "+218" },
+      { id: "ff-latam-5600", name: "5600 + 560 Diamantes", diamonds: "6160", price: 45.00, s2tItemId: 737, bonus: "+560" },
+      { id: "ff-latam-weekly", name: "Weekly Membership", diamonds: "Weekly", price: 3.00, s2tItemId: 741 },
+      { id: "ff-latam-booyah", name: "Booyah Pass", diamonds: "Pass", price: 5.00, s2tItemId: 738 },
+    ],
+  },
+  {
+    id: "free-fire-br",
+    name: "Free Fire Brasil",
+    shortName: "FF BR",
+    description: "Diamantes Free Fire Brasil — entrega automática",
+    color: "#ff6b00",
+    gradient: "from-orange-600 to-amber-500",
+    emoji: "🇧🇷",
+    categoryId: 487,
+    requiresServer: false,
+    packages: [
+      { id: "ff-br-100", name: "100 + 10 Diamantes", diamonds: "110", price: 1.20, s2tItemId: 777, bonus: "+10" },
+      { id: "ff-br-310", name: "310 + 31 Diamantes", diamonds: "341", price: 3.50, s2tItemId: 778, popular: true, bonus: "+31" },
+      { id: "ff-br-520", name: "520 + 52 Diamantes", diamonds: "572", price: 5.20, s2tItemId: 779, bonus: "+52" },
+      { id: "ff-br-1060", name: "1060 + 106 Diamantes", diamonds: "1166", price: 10.90, s2tItemId: 780, popular: true, bonus: "+106" },
+      { id: "ff-br-2180", name: "2180 + 218 Diamantes", diamonds: "2398", price: 21.50, s2tItemId: 781, bonus: "+218" },
+      { id: "ff-br-5600", name: "5600 + 560 Diamantes", diamonds: "6160", price: 49.90, s2tItemId: 782, bonus: "+560" },
+      { id: "ff-br-weekly", name: "Weekly Membership", diamonds: "Weekly", price: 2.50, s2tItemId: 796 },
+      { id: "ff-br-booyah", name: "Booyah Pass", diamonds: "Pass", price: 2.50, s2tItemId: 783 },
     ],
   },
   {
@@ -97,22 +119,6 @@ export const GAMES: Game[] = [
       { id: "gi-1980", name: "1980 + 260", diamonds: "2240", price: 29.99, bonus: "+260" },
       { id: "gi-3280", name: "3280 + 600", diamonds: "3880", price: 49.99, bonus: "+600" },
       { id: "gi-6480", name: "6480 + 1600", diamonds: "8080", price: 99.99, bonus: "+1600" },
-    ],
-  },
-  {
-    id: "honor-of-kings",
-    name: "Honor of Kings",
-    shortName: "HoK",
-    description: "Tokens Honor of Kings",
-    color: "#f43f5e",
-    gradient: "from-rose-500 to-pink-600",
-    emoji: "👑",
-    requiresServer: false,
-    packages: [
-      { id: "hok-60", name: "60 Tokens", diamonds: "60", price: 0.99 },
-      { id: "hok-300", name: "300 Tokens", diamonds: "300", price: 4.99, popular: true },
-      { id: "hok-980", name: "980 Tokens", diamonds: "980", price: 14.99 },
-      { id: "hok-1980", name: "1980 Tokens", diamonds: "1980", price: 29.99, popular: true },
     ],
   },
   {
