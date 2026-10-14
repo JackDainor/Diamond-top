@@ -21,7 +21,7 @@ export function Footer() {
             <span>Pago seguro</span>
           </div>
           <p className="text-xs text-muted/70">
-            © {new Date().getFullYear()} DiamondTop. Todos los derechos reservados.
+            © 2026 DiamondTop. Todos los derechos reservados.
           </p>
         </div>
       </div>
